@@ -1,22 +1,32 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-
-
-
-
+import { AuthContext } from "../../components/AuthProvider";
 
 const Register = () => {
 
+    const { signInUser, setUser } = useContext(AuthContext);
 
     const handleSubmit = e => {
         e.preventDefault();
-        const form = new FormData();
-        console.log(form.get(name));
+        const form = new FormData(e.currentTarget);
+        const name = form.get('name');
+        const photo = form.get('photo');
+        const email = form.get('email');
+        const password = form.get('password');
+        console.log(name, photo, email, password);
+
+        signInUser(email, password)
+            .then(result => {
+                setUser(result.user)
+                console.log(result.user);
+            })
+            .catch(error => console.log(error.message))
     }
 
     return (
         <div className="flex flex-col justify-center items-center">
             <h2 className=" font-bold text-4xl mt-6">Please Register</h2>
-            <div className=" w-1/2 mx-auto mt-5 p-6  border border-light-gray rounded-lg bg-soft-beige ">
+            <div className=" md:w-2/5 mx-auto mt-5 p-6  border border-light-gray rounded-lg bg-soft-beige ">
                 <form onSubmit={handleSubmit} className="flex flex-col mx-auto space-y-4">
                     <div>
                         <label className="text-sm text-dark-charcoal">Name</label>
@@ -57,7 +67,7 @@ const Register = () => {
                     </div>
                     <button
                         type="submit"
-                        className="mt-6 bg-forest-green font-bold text-off-white px-4 py-2 rounded-md hover:bg-golden-yellow hover:text-earth-brown transition duration-300"
+                        className="mt-6 bg-forest-green font-bold text-off-white px-4 py-2 rounded-md hover:bg-golden-yellow hover:text-dark-charcoal transition duration-300"
                     >
                         Register
                     </button>
