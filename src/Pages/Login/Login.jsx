@@ -34,7 +34,13 @@ const Login = () => {
             )
     }
     const handleFacebookSignIn = () => {
-        
+        facebookSignIn()
+            .then(result => {
+                setUser(result.user)
+                console.log(result.user);
+            })
+            .catch(error => console.log(error)
+            )
     }
 
     return (

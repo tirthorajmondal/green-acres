@@ -4,6 +4,9 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
+import UpdateProfile from "../Pages/UpdateProfile/UpdateProfie";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 const routes = createBrowserRouter([
     {
@@ -22,6 +25,18 @@ const routes = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '/update',
+                element: <UpdateProfile />
+            },
+            {
+                path: '/contact',
+                element: <ContactUs />
+            },
+            {
+                path: '/about',
+                element: <AboutUs />
             },
 
         ]

@@ -1,8 +1,9 @@
+import EstateSection from "../../components/demo";
 
 const Home = () => {
     return (
         <div>
-            this is home
+            <EstateSection></EstateSection>
         </div>
     );
 };

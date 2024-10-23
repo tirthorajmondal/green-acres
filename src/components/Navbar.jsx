@@ -24,16 +24,17 @@ const Navbar = () => {
                 isActive ? 'font-bold border-b-2 border-golden-yellow rounded-none hover:bg-transparent focus:text-white' : 'hover:text-golden-yellow font-bold rounded-none hover:bg-transparent'
 
         }>Home</NavLink></li>
-        <li><NavLink to='/login' className={
+        <li><NavLink to='/about' className={
             ({ isActive }) =>
                 isActive ? 'font-bold border-b-2 border-golden-yellow rounded-none hover:bg-transparent focus:text-white' : 'hover:text-golden-yellow font-bold rounded-none hover:bg-transparent'
 
-        }>Login</NavLink></li>
-        <li><NavLink to='/register' className={
+        }>About</NavLink></li>
+        <li><NavLink to='/contact' className={
             ({ isActive }) =>
                 isActive ? 'font-bold border-b-2 border-golden-yellow rounded-none hover:bg-transparent focus:text-white' : 'hover:text-golden-yellow font-bold rounded-none hover:bg-transparent'
 
-        }>Register</NavLink></li>
+        }>Contact Us</NavLink></li>
+
     </>
 
     return (
@@ -73,32 +74,38 @@ const Navbar = () => {
             <div className="navbar-end">
 
                 {/* dynamic content */}
+                {
+                    user ?
+                        <div href="" data-tooltip-id="my-tooltip" data-tooltip-content={user && user.displayName} className="dropdown dropdown-end ">
+                            <Tooltip id='my-tooltip' />
 
-                <div href="" data-tooltip-id="my-tooltip" data-tooltip-content={user && user.displayName} className="dropdown dropdown-end ">
-                    <Tooltip id='my-tooltip' />
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
 
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            {
-                                user ? <img
-                                    alt="profile-pic"
-                                    src={user.photoURL} /> : <img
-                                    alt="profile-pic"
-                                    src={"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
-                            }
-                        </div>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-40 border p-2 gap-2 shadow">
-                        <li>
-                            <NavLink to='/a' className="justify-between">
-                                Update Profile
-                            </NavLink>
-                        </li>
-                        <li><NavLink onClick={handleLogOut} className=''>Logout</NavLink></li>
-                    </ul>
-                </div>
+                                    <img
+                                        src={user.photoURL} /> : <img
+                                        alt="profile-pic"
+                                    />
+
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-40 border p-2 gap-2 shadow">
+                                <li>
+                                    <NavLink to='/update' className="justify-between">
+                                        Update Profile
+                                    </NavLink>
+                                </li>
+                                <li><NavLink onClick={handleLogOut} to='' className=''>Logout</NavLink></li>
+                            </ul>
+                        </div> :
+                        <button className='btn btn-outline text-off-white border-golden-yellow hover:text-dark-charcoal hover:bg-golden-yellow transition duration-300 hover:border-none'><NavLink to='/login'
+
+                        >Login</NavLink></button>
+
+
+                }
             </div>
         </div>
     );
